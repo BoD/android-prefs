@@ -8,12 +8,16 @@ import android.content.SharedPreferences;
 
 import org.jraf.android.prefwrapper.SharedPreferencesWrapper;
 
-public class ${className} extends SharedPreferencesWrapper {
-    public ${className}(SharedPreferences sharedPreferences) {
-        super(sharedPreferences);
+public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
+    public ${prefWrapperClassName}(SharedPreferences wrapped) {
+        super(wrapped);
     }
 
+    public ${editorWrapperClassName} edit() {
+        return new ${editorWrapperClassName}(super.edit());
+    }
 <#list prefList as pref>
+
     <#if pref.comment??>
     /**
      * ${pref.comment?trim}
@@ -21,8 +25,16 @@ public class ${className} extends SharedPreferencesWrapper {
     </#if>
     public ${pref.type.simpleName} get${pref.fieldName?cap_first}() {
         if (!contains("${pref.prefName}")) return ${pref.defaultValue};
-        return ${pref.type.getterName}("${pref.prefName}", ${pref.type.defaultValue});
+        return get${pref.type.methodName}("${pref.prefName}", ${pref.type.defaultValue});
     }
 
+    <#if pref.comment??>
+    /**
+     * ${pref.comment?trim}
+     */
+    </#if>
+    public boolean contains${pref.fieldName?cap_first}() {
+        return contains("${pref.prefName}");
+    }
 </#list>
 }

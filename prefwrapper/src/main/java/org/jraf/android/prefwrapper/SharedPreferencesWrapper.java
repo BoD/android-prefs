@@ -11,8 +11,8 @@ import android.content.SharedPreferences;
 public class SharedPreferencesWrapper {
     private final SharedPreferences mWrapped;
 
-    public SharedPreferencesWrapper(SharedPreferences sharedPreferences) {
-        mWrapped = sharedPreferences;
+    public SharedPreferencesWrapper(SharedPreferences wrapped) {
+        mWrapped = wrapped;
     }
 
     public Map<String, ?> getAll() {

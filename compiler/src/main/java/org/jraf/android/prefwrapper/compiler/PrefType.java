@@ -7,22 +7,22 @@ import javax.lang.model.type.TypeMirror;
 import org.apache.commons.lang3.StringUtils;
 
 public enum PrefType {
-    BOOLEAN(Boolean.class.getName(), Boolean.class.getSimpleName(), "getBoolean", "false"),
-    FLOAT(Float.class.getName(), Float.class.getSimpleName(), "getFloat", "0f"),
-    INTEGER(Integer.class.getName(), Integer.class.getSimpleName(), "getInt", "0"),
-    LONG(Long.class.getName(), Long.class.getSimpleName(), "getLong", "0L"),
-    STRING(String.class.getName(), String.class.getSimpleName(), "getString", "null"),
-    STRING_SET("java.util.Set<java.lang.String>", "Set<String>", "getStringSet", "null"),;
+    BOOLEAN(Boolean.class.getName(), Boolean.class.getSimpleName(), "Boolean", "false"),
+    FLOAT(Float.class.getName(), Float.class.getSimpleName(), "Float", "0f"),
+    INTEGER(Integer.class.getName(), Integer.class.getSimpleName(), "Int", "0"),
+    LONG(Long.class.getName(), Long.class.getSimpleName(), "Long", "0L"),
+    STRING(String.class.getName(), String.class.getSimpleName(), "String", "null"),
+    STRING_SET("java.util.Set<java.lang.String>", "Set<String>", "StringSet", "null"),;
 
     private final String mFullName;
     private final String mSimpleName;
-    private final String mGetterName;
+    private final String mMethodName;
     private final String mDefaultValue;
 
-    PrefType(String fullName, String simpleName, String getterName, String defaultValue) {
+    PrefType(String fullName, String simpleName, String methodName, String defaultValue) {
         mFullName = fullName;
         mSimpleName = simpleName;
-        mGetterName = getterName;
+        mMethodName = methodName;
         mDefaultValue = defaultValue;
     }
 
@@ -34,8 +34,8 @@ public enum PrefType {
         return mSimpleName;
     }
 
-    public String getGetterName() {
-        return mGetterName;
+    public String getMethodName() {
+        return mMethodName;
     }
 
     public String getDefaultValue() {

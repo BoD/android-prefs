@@ -88,21 +88,30 @@ public class PrefWrapperProcessor extends AbstractProcessor {
 
                     String fieldComment = processingEnv.getElementUtils().getDocComment(variableElement);
                     Pref pref = new Pref(fieldName, prefName, PrefType.from(fieldType), prefDefaultValue, fieldComment);
-                    System.out.println(pref);
                     prefList.add(pref);
                 }
 
                 JavaFileObject javaFileObject = null;
                 try {
+                    // SharedPreferencesWrapper
                     javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + "Wrapper");
                     Template template = getFreemarkerConfiguration().getTemplate("prefwrapper.ftl");
                     Map<String, Object> args = new HashMap<String, Object>();
                     args.put("package", packageElement.getQualifiedName());
-                    args.put("className", classElement.getSimpleName() + "Wrapper");
+                    args.put("prefWrapperClassName", classElement.getSimpleName() + "Wrapper");
+                    args.put("editorWrapperClassName", classElement.getSimpleName() + "EditorWrapper");
                     args.put("prefList", prefList);
                     Writer writer = javaFileObject.openWriter();
                     template.process(args, writer);
                     IOUtils.closeQuietly(writer);
+
+                    // EditorWrapper
+                    javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + "EditorWrapper");
+                    template = getFreemarkerConfiguration().getTemplate("editorwrapper.ftl");
+                    writer = javaFileObject.openWriter();
+                    template.process(args, writer);
+                    IOUtils.closeQuietly(writer);
+
                 } catch (Exception e) {
                     // TODO better error management
                     e.printStackTrace();
