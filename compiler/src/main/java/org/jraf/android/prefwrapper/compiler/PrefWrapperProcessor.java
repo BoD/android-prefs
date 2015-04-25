@@ -113,8 +113,11 @@ public class PrefWrapperProcessor extends AbstractProcessor {
                     IOUtils.closeQuietly(writer);
 
                 } catch (Exception e) {
-                    // TODO better error management
+                    processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
+                            "En error occurred while generating PrefWrapper code " + e.getClass() + e.getMessage(), element);
                     e.printStackTrace();
+                    // Problem detected: halt
+                    return true;
                 }
             }
         }
