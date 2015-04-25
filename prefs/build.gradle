@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:2.2.+'
+    }
+}
+
+apply plugin: 'java'
+// Adds the 'provided' dependency, because the Java plugin doesn't have it!
+// See https://issues.gradle.org/browse/GRADLE-784
+apply plugin: 'provided-base'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+group = 'org.jraf'
+version = '1.0.0'
+
+javadoc.failOnError = false
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+dependencies {
+    provided project(':android-sharedpreferences')
+}
+
+// Use "./gradlew install" to deploy the artifacts to your local maven repository

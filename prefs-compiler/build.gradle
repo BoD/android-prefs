@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+group = 'org.jraf'
+version = '1.0.0'
+
+javadoc.failOnError = false
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+dependencies {
+    compile 'org.freemarker:freemarker:2.3.22'
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile project(':prefs')
+}
+
+// Use "./gradlew install" to deploy the artifacts to your local maven repository

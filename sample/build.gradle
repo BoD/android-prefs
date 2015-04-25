@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-//apply plugin: 'org.jraf.android.prefwrapper'
 
 android {
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
 
     defaultConfig {
-        applicationId 'org.jraf.android.prefwrapper.sample'
+        applicationId 'org.jraf.android.prefs.sample'
         minSdkVersion 9
         targetSdkVersion 22
         versionCode 1
@@ -22,8 +21,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    apt project(':compiler')
-    compile project(':prefwrapper')
+    apt project(':prefs-compiler')
+    compile project(':prefs')
 }
 
