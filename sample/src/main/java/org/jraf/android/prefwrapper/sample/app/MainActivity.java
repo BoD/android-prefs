@@ -1,22 +1,22 @@
 package org.jraf.android.prefwrapper.sample.app;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.jraf.android.prefwrapper.sample.MainPreferencesWrapper;
 import org.jraf.android.prefwrapper.sample.R;
 
 public class MainActivity extends Activity {
+    private static final String TAG = MainActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        MainPreferencesWrapper wrapper = new MainPreferencesWrapper(sharedPreferences);
-        System.out.println(wrapper.getClass());
+        MainPreferencesWrapper mainPrefs = MainPreferencesWrapper.get(this);
+        mainPrefs.edit().putLogin("john").putPassword("p4Ssw0Rd").commit();
+        Log.d(TAG, "login=" + mainPrefs.getLogin());
     }
 }

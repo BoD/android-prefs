@@ -6,13 +6,9 @@ import android.content.Context;
 
 import org.jraf.android.prefwrapper.DefaultInt;
 import org.jraf.android.prefwrapper.DefaultStringSet;
-import org.jraf.android.prefwrapper.Mode;
-import org.jraf.android.prefwrapper.Name;
 import org.jraf.android.prefwrapper.PrefWrapper;
 
-@PrefWrapper
-@Name("settings")
-@Mode(Context.MODE_PRIVATE)
+@PrefWrapper(fileName = "settings", fileMode = Context.MODE_PRIVATE)
 public class SettingsPreferences {
     @DefaultInt(0xFFBB00DD)
     Integer preferredColor;

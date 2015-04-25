@@ -4,11 +4,27 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import org.jraf.android.prefwrapper.SharedPreferencesWrapper;
 
 public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
+    private static MainPreferencesWrapper sInstance;
+
+    public static MainPreferencesWrapper get(Context context) {
+        if (sInstance == null) {
+<#if fileName??>
+            SharedPreferences wrapped = context.getSharedPreferences("${fileName}", ${fileMode});
+<#else>
+            SharedPreferences wrapped = PreferenceManager.getDefaultSharedPreferences(context);
+</#if>
+            sInstance = new MainPreferencesWrapper(wrapped);
+        }
+        return sInstance;
+    }
+
     public ${prefWrapperClassName}(SharedPreferences wrapped) {
         super(wrapped);
     }

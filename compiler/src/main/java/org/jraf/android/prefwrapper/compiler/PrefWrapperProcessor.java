@@ -30,6 +30,7 @@ import org.jraf.android.prefwrapper.DefaultLong;
 import org.jraf.android.prefwrapper.DefaultString;
 import org.jraf.android.prefwrapper.DefaultStringSet;
 import org.jraf.android.prefwrapper.Name;
+import org.jraf.android.prefwrapper.PrefWrapper;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -77,8 +78,8 @@ public class PrefWrapperProcessor extends AbstractProcessor {
                     }
 
                     String fieldName = variableElement.getSimpleName().toString();
-                    Name nameAnnotation = variableElement.getAnnotation(Name.class);
-                    String prefName = getPrefName(fieldName, nameAnnotation);
+                    Name fieldNameAnnot = variableElement.getAnnotation(Name.class);
+                    String prefName = getPrefName(fieldName, fieldNameAnnot);
 
                     String prefDefaultValue = getDefaultValue(variableElement, fieldType);
                     if (prefDefaultValue == null) {
@@ -91,12 +92,34 @@ public class PrefWrapperProcessor extends AbstractProcessor {
                     prefList.add(pref);
                 }
 
+                Map<String, Object> args = new HashMap<String, Object>();
+
+                // File name (optional - also use 'value' for this)
+                PrefWrapper prefWrapperAnnot = classElement.getAnnotation(PrefWrapper.class);
+                String fileName = prefWrapperAnnot.value();
+                if (fileName.isEmpty()) {
+                    fileName = prefWrapperAnnot.fileName();
+                }
+                if (!fileName.isEmpty()) args.put("fileName", fileName);
+
+                // File mode (must only appear if fileName is defined)
+                int fileMode = prefWrapperAnnot.fileMode();
+                if (fileMode != -1) {
+                    if (fileName.isEmpty()) {
+                        // File mode set, but not file name (which makes no sense)
+                        processingEnv.getMessager()
+                                .printMessage(Diagnostic.Kind.ERROR, "fileMode must only be set if fileName (or value) is also set", classElement);
+                        // Problem detected: halt
+                        return true;
+                    }
+                    args.put("fileMode", fileMode);
+                }
+
                 JavaFileObject javaFileObject = null;
                 try {
                     // SharedPreferencesWrapper
                     javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + "Wrapper");
                     Template template = getFreemarkerConfiguration().getTemplate("prefwrapper.ftl");
-                    Map<String, Object> args = new HashMap<String, Object>();
                     args.put("package", packageElement.getQualifiedName());
                     args.put("prefWrapperClassName", classElement.getSimpleName() + "Wrapper");
                     args.put("editorWrapperClassName", classElement.getSimpleName() + "EditorWrapper");
@@ -196,9 +219,9 @@ public class PrefWrapperProcessor extends AbstractProcessor {
         return true;
     }
 
-    private static String getPrefName(String fieldName, Name nameAnnotation) {
-        if (nameAnnotation != null) {
-            return nameAnnotation.value();
+    private static String getPrefName(String fieldName, Name fieldNameAnnot) {
+        if (fieldNameAnnot != null) {
+            return fieldNameAnnot.value();
         }
         return fieldName;
     }
