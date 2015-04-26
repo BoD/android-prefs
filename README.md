@@ -72,7 +72,7 @@ Currently, the accepted types are:
 - Integer
 - Long
 - String
-- Set<String>
+- Set\<String\>
 
 Optionally, use `@DefaultXxx` and `@Name` annotations (the default default is `null`, and the default name is the name of your field).
 
