@@ -1,4 +1,4 @@
-package org.jraf.android.prefs.sample;
+package org.jraf.android.prefs.sample.prefs;
 
 import java.util.Set;
 

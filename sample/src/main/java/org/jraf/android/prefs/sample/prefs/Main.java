@@ -1,4 +1,4 @@
-package org.jraf.android.prefs.sample;
+package org.jraf.android.prefs.sample.prefs;
 
 import org.jraf.android.prefs.DefaultBoolean;
 import org.jraf.android.prefs.Name;
@@ -24,5 +24,5 @@ public class Main {
     Boolean isPremium;
 
     @Name(PREF_AGE)
-    Long age;
+    Integer age;
 }

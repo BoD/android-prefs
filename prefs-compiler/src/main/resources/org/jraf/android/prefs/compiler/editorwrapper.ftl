@@ -20,7 +20,21 @@ public class ${editorWrapperClassName} extends EditorWrapper {
      */
     </#if>
     public ${editorWrapperClassName} put${pref.fieldName?cap_first}(${pref.type.simpleName} ${pref.fieldName}) {
-        put${pref.type.methodName}("${pref.prefName}", ${pref.fieldName});
+        if (${pref.fieldName} == null) {
+            remove("${pref.prefName}");
+        } else {
+            put${pref.type.methodName}("${pref.prefName}", ${pref.fieldName});
+        }
+        return this;
+    }
+
+    <#if pref.comment??>
+    /**
+     * ${pref.comment?trim}
+     */
+    </#if>
+    public ${editorWrapperClassName} remove${pref.fieldName?cap_first}() {
+        remove("${pref.prefName}");
         return this;
     }
 </#list>

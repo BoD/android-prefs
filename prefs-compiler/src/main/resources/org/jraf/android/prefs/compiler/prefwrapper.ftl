@@ -15,14 +15,18 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
 
     public static ${prefWrapperClassName} get(Context context) {
         if (sInstance == null) {
-<#if fileName??>
-            SharedPreferences wrapped = context.getSharedPreferences("${fileName}", ${fileMode});
-<#else>
-            SharedPreferences wrapped = PreferenceManager.getDefaultSharedPreferences(context);
-</#if>
+            SharedPreferences wrapped = getWrapped(context);
             sInstance = new ${prefWrapperClassName}(wrapped);
         }
         return sInstance;
+    }
+
+    protected static SharedPreferences getWrapped(Context context) {
+<#if fileName??>
+        return context.getSharedPreferences("${fileName}", ${fileMode});
+<#else>
+        return PreferenceManager.getDefaultSharedPreferences(context);
+</#if>
     }
 
     public ${prefWrapperClassName}(SharedPreferences wrapped) {
@@ -51,6 +55,26 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     </#if>
     public boolean contains${pref.fieldName?cap_first}() {
         return contains("${pref.prefName}");
+    }
+
+    <#if pref.comment??>
+    /**
+     * ${pref.comment?trim}
+     */
+    </#if>
+    public ${prefWrapperClassName} put${pref.fieldName?cap_first}(${pref.type.simpleName} ${pref.fieldName}) {
+        edit().put${pref.fieldName?cap_first}(${pref.fieldName}).apply();
+        return this;
+    }
+
+    <#if pref.comment??>
+    /**
+     * ${pref.comment?trim}
+     */
+    </#if>
+    public ${prefWrapperClassName} remove${pref.fieldName?cap_first}() {
+        edit().remove("${pref.prefName}").apply();
+        return this;
     }
 </#list>
 }
