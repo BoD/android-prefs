@@ -98,7 +98,7 @@ A class named `<YourClassName>Prefs` will be generated in the same package (at c
         mainPrefs.putAge(42);
 
         // Put several values in one transaction
-        mainPrefs.edit().putLogin("john").putPassword("p4Ssw0Rd").commit();
+        mainPrefs.edit().putLogin("john").putPassword("p4Ssw0Rd").apply();
 
         // Check if a value is set
         if (mainPrefs.containsLogin()) doSomething();
