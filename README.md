@@ -3,6 +3,9 @@ Prefs
 
 Android preferences for WINNERS!
 
+![Be a winner!](/illus.jpg?raw=true "Be a winner!")
+
+
 This little tool generates wrappers for your SharedPreferences, so you can benefit from compile time
 verification and code completion in your IDE.  You also get nice singletons for free.
 
