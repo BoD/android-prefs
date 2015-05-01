@@ -33,8 +33,8 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
     /* ... */
-    apt 'org.jraf:prefs-compiler:1.0.0'
-    compile 'org.jraf:prefs:1.0.0'
+    apt 'org.jraf:prefs-compiler:1.0.1'
+    compile 'org.jraf:prefs:1.0.1'
 }
 ```
 
@@ -107,6 +107,9 @@ A class named `<YourClassName>Prefs` will be generated in the same package (at c
         mainPrefs.removeAge();
         // Or (this has the same effect)
         mainPrefs.putAge(null);
+
+        // Clear all values!
+        mainPrefs.clear();
 ```
 
 
