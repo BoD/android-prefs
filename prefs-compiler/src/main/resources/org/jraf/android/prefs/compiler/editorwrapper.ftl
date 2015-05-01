@@ -8,6 +8,11 @@ import android.content.SharedPreferences;
 
 import org.jraf.android.prefs.EditorWrapper;
 
+<#if comment??>
+/**
+ * ${comment?trim}
+ */
+</#if>
 public class ${editorWrapperClassName} extends EditorWrapper {
     public ${editorWrapperClassName}(SharedPreferences.Editor wrapped) {
         super(wrapped);

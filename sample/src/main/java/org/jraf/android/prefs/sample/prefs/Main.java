@@ -27,6 +27,9 @@ import org.jraf.android.prefs.DefaultBoolean;
 import org.jraf.android.prefs.Name;
 import org.jraf.android.prefs.Prefs;
 
+/**
+ * The main preferences of the app.
+ */
 @Prefs
 public class Main {
     private static final String PREF_LOGIN = "PREF_LOGIN";

@@ -10,6 +10,11 @@ import android.preference.PreferenceManager;
 
 import org.jraf.android.prefs.SharedPreferencesWrapper;
 
+<#if comment??>
+/**
+ * ${comment?trim}
+ */
+</#if>
 public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     private static ${prefWrapperClassName} sInstance;
 

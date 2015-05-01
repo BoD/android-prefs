@@ -31,6 +31,9 @@ import org.jraf.android.prefs.DefaultInt;
 import org.jraf.android.prefs.DefaultStringSet;
 import org.jraf.android.prefs.Prefs;
 
+/**
+ * Other settings useful for the app.
+ */
 @Prefs(fileName = "settings", fileMode = Context.MODE_PRIVATE)
 public class Settings {
     @DefaultInt(0xFFBB00DD)

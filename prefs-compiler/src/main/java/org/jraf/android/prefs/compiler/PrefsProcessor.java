@@ -79,6 +79,8 @@ public class PrefsProcessor extends AbstractProcessor {
                 TypeElement classElement = (TypeElement) element;
                 PackageElement packageElement = (PackageElement) classElement.getEnclosingElement();
 
+                String classComment = processingEnv.getElementUtils().getDocComment(classElement);
+
                 List<Pref> prefList = new ArrayList<Pref>();
                 // Iterate over the fields of the class
                 for (VariableElement variableElement : ElementFilter.fieldsIn(classElement.getEnclosedElements())) {
@@ -140,6 +142,7 @@ public class PrefsProcessor extends AbstractProcessor {
                     javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + SUFFIX_PREF_WRAPPER);
                     Template template = getFreemarkerConfiguration().getTemplate("prefwrapper.ftl");
                     args.put("package", packageElement.getQualifiedName());
+                    args.put("comment", classComment);
                     args.put("prefWrapperClassName", classElement.getSimpleName() + SUFFIX_PREF_WRAPPER);
                     args.put("editorWrapperClassName", classElement.getSimpleName() + SUFFIX_EDITOR_WRAPPER);
                     args.put("prefList", prefList);
