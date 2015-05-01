@@ -31,7 +31,7 @@ import android.content.SharedPreferences;
 /**
  * Wrapper for {@link SharedPreferences}.
  */
-public class SharedPreferencesWrapper {
+public class SharedPreferencesWrapper implements SharedPreferences {
     private final SharedPreferences mWrapped;
 
     public SharedPreferencesWrapper(SharedPreferences wrapped) {
@@ -80,5 +80,12 @@ public class SharedPreferencesWrapper {
 
     public void unregisterOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
         mWrapped.unregisterOnSharedPreferenceChangeListener(listener);
+    }
+
+    /**
+     * Remove <em>all</em> values from the preferences.
+     */
+    public void clear() {
+        edit().clear().apply();
     }
 }

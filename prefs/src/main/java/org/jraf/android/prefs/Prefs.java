@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.SOURCE)
 public @interface Prefs {
     /**
-     * Desired preferences file name.<br/>
+     * Desired preferences file name.<br>
      * {@link #value()} and {@link #fileName()} are synonyms.
      *
      * @see android.content.Context#getSharedPreferences(java.lang.String, int)
@@ -40,7 +40,7 @@ public @interface Prefs {
     String value() default "";
 
     /**
-     * Desired preferences file name.<br/>
+     * Desired preferences file name.<br>
      * {@link #value()} and {@link #fileName()} are synonyms.
      *
      * @see android.content.Context#getSharedPreferences(java.lang.String, int)
@@ -51,8 +51,8 @@ public @interface Prefs {
      * Operating mode (should be {@link android.content.Context#MODE_PRIVATE},
      * {@link android.content.Context#MODE_WORLD_READABLE},
      * {@link android.content.Context#MODE_WORLD_WRITEABLE},
-     * or {@link android.content.Context#MODE_MULTI_PROCESS}.<br/>
-     * <br/>
+     * or {@link android.content.Context#MODE_MULTI_PROCESS}.<br>
+     * <br>
      * <strong>This must only be set if {@link #fileName()} (or {@link #value()}) is also set</strong>
      *
      * @see android.content.Context#getSharedPreferences(java.lang.String, int)
