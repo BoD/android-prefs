@@ -58,4 +58,11 @@ public @interface Prefs {
      * @see android.content.Context#getSharedPreferences(java.lang.String, int)
      */
     int fileMode() default -1;
+
+    /**
+     * Normally, {@code @Nullable} annotations are included in the generated code where appropriate.
+     * This behavior can be disabled by setting this to {@code true}.
+     * This is useful if your project does not use the support library.
+     */
+    boolean disableNullable() default false;
 }

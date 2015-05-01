@@ -19,11 +19,16 @@ public class ${editorWrapperClassName} extends EditorWrapper {
     }
 <#list prefList as pref>
 
+
+    //================================================================================
+    // region ${pref.fieldName?cap_first}
+    //================================================================================
+
     <#if pref.comment??>
     /**
      * ${pref.comment?trim}
      */
-    </#if>
+    </#if><#t>
     public ${editorWrapperClassName} put${pref.fieldName?cap_first}(${pref.type.simpleName} ${pref.fieldName}) {
         if (${pref.fieldName} == null) {
             remove("${pref.prefName}");
@@ -37,10 +42,12 @@ public class ${editorWrapperClassName} extends EditorWrapper {
     /**
      * ${pref.comment?trim}
      */
-    </#if>
+    </#if><#t>
     public ${editorWrapperClassName} remove${pref.fieldName?cap_first}() {
         remove("${pref.prefName}");
         return this;
     }
+
+    // endregion
 </#list>
 }

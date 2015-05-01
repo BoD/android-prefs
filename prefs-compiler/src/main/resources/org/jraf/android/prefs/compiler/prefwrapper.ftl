@@ -7,6 +7,9 @@ import java.util.Set;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+<#if !disableNullable>
+import android.support.annotation.Nullable;
+</#if><#t>
 
 import org.jraf.android.prefs.SharedPreferencesWrapper;
 
@@ -43,11 +46,19 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     }
 <#list prefList as pref>
 
+
+    //================================================================================
+    // region ${pref.fieldName?cap_first}
+    //================================================================================
+
     <#if pref.comment??>
     /**
      * ${pref.comment?trim}
      */
-    </#if>
+    </#if><#t>
+    <#if !disableNullable && pref.defaultValue == "null">
+    @Nullable
+    </#if><#t>
     public ${pref.type.simpleName} get${pref.fieldName?cap_first}() {
         if (!contains("${pref.prefName}")) return ${pref.defaultValue};
         return get${pref.type.methodName}("${pref.prefName}", ${pref.type.defaultValue});
@@ -57,7 +68,7 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     /**
      * ${pref.comment?trim}
      */
-    </#if>
+    </#if><#t>
     public boolean contains${pref.fieldName?cap_first}() {
         return contains("${pref.prefName}");
     }
@@ -66,7 +77,7 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     /**
      * ${pref.comment?trim}
      */
-    </#if>
+    </#if><#t>
     public ${prefWrapperClassName} put${pref.fieldName?cap_first}(${pref.type.simpleName} ${pref.fieldName}) {
         edit().put${pref.fieldName?cap_first}(${pref.fieldName}).apply();
         return this;
@@ -76,10 +87,12 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     /**
      * ${pref.comment?trim}
      */
-    </#if>
+    </#if><#t>
     public ${prefWrapperClassName} remove${pref.fieldName?cap_first}() {
         edit().remove("${pref.prefName}").apply();
         return this;
     }
+
+    // endregion
 </#list>
 }

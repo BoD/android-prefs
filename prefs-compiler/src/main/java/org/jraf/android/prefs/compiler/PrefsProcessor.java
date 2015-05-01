@@ -136,6 +136,9 @@ public class PrefsProcessor extends AbstractProcessor {
                     args.put("fileMode", fileMode);
                 }
 
+                // Disable @Nullable generation
+                args.put("disableNullable", prefsAnnot.disableNullable());
+
                 JavaFileObject javaFileObject = null;
                 try {
                     // SharedPreferencesWrapper
