@@ -9,6 +9,8 @@ Android preferences for WINNERS!
 This little tool generates wrappers for your SharedPreferences, so you can benefit from compile time
 verification and code completion in your IDE.  You also get nice singletons for free.
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-android--prefs-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1758)
+
 Usage
 ---
 
