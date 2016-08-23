@@ -62,8 +62,7 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     </#if><#t>
     @Deprecated
     public ${pref.type.simpleName} get${pref.fieldName?cap_first}() {
-        if (!contains("${pref.prefName}")) return ${pref.defaultValue};
-        return get${pref.type.methodName}("${pref.prefName}", ${pref.type.defaultValue});
+        return is${pref.fieldName?cap_first}();
     }
     </#if>
 
