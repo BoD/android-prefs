@@ -51,6 +51,22 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     // region ${pref.fieldName?cap_first}
     //================================================================================
 
+    <#if pref.type == "BOOLEAN">
+    <#if pref.comment??>
+    /**
+     * ${pref.comment?trim}
+     */
+    </#if><#t>
+    <#if !disableNullable && pref.defaultValue == "null">
+    @Nullable
+    </#if><#t>
+    @Deprecated
+    public ${pref.type.simpleName} get${pref.fieldName?cap_first}() {
+        if (!contains("${pref.prefName}")) return ${pref.defaultValue};
+        return get${pref.type.methodName}("${pref.prefName}", ${pref.type.defaultValue});
+    }
+    </#if>
+
     <#if pref.comment??>
     /**
      * ${pref.comment?trim}
