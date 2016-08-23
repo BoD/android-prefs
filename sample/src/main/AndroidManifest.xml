@@ -3,6 +3,7 @@
     package="org.jraf.android.prefs.sample" >
 
     <application
+        android:name=".PrefsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

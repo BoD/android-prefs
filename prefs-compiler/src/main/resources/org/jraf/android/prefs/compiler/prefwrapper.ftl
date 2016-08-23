@@ -21,10 +21,25 @@ import org.jraf.android.prefs.SharedPreferencesWrapper;
 public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     private static ${prefWrapperClassName} sInstance;
 
-    public static ${prefWrapperClassName} get(Context context) {
+    public static synchronized void initialize(Context context) {
+        SharedPreferences wrapped = getWrapped(context);
+        sInstance = new ${prefWrapperClassName}(wrapped);
+    }
+
+    /**
+     * Get ${prefWrapperClassName} initialized in an Application class
+     */
+    public static synchronized ${prefWrapperClassName} get() {
         if (sInstance == null) {
-            SharedPreferences wrapped = getWrapped(context);
-            sInstance = new ${prefWrapperClassName}(wrapped);
+            throw new IllegalStateException(${prefWrapperClassName}.class.getSimpleName() +
+                    " is not initialized. Call initialize(Context) method first or pass Context argument.");
+        }
+        return sInstance;
+    }
+
+    public static synchronized ${prefWrapperClassName} get(Context context) {
+        if (sInstance == null) {
+            initialize(context);
         }
         return sInstance;
     }

@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
         Log.d(TAG, "age=" + mainPrefs.getAge());
         Log.d(TAG, "mainPrefs=" + mainPrefs.getAll());
 
-        SettingsPrefs settingsPrefs = SettingsPrefs.get(this);
+        SettingsPrefs settingsPrefs = SettingsPrefs.get();
         settingsPrefs.putPreferredColor(0xFFFFFF);
         Log.d(TAG, "preferredColor=" + settingsPrefs.getPreferredColor());
         Log.d(TAG, "settingsPrefs=" + settingsPrefs.getAll());
