@@ -59,7 +59,7 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     <#if !disableNullable && pref.defaultValue == "null">
     @Nullable
     </#if><#t>
-    public ${pref.type.simpleName} get${pref.fieldName?cap_first}() {
+    public ${pref.type.simpleName} <#if pref.type == "BOOLEAN">is<#else>get</#if>${pref.fieldName?cap_first}() {
         if (!contains("${pref.prefName}")) return ${pref.defaultValue};
         return get${pref.type.methodName}("${pref.prefName}", ${pref.type.defaultValue});
     }

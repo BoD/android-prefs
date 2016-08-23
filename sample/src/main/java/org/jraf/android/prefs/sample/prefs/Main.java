@@ -47,7 +47,7 @@ public class Main {
     String password;
 
     @DefaultBoolean(false)
-    Boolean isPremium;
+    Boolean premium;
 
     @Name(PREF_AGE)
     Integer age;
