@@ -210,7 +210,7 @@ public class PrefsProcessor extends AbstractProcessor {
         org.jraf.android.prefs.DefaultString defaultStringAnnot = (org.jraf.android.prefs.DefaultString) variableElement.getAnnotation(annotClass);
         if (defaultStringAnnot != null) {
             if (!ensureCompatibleAnnotation(compatiblePrefType, fieldType, annotClass, variableElement)) return null;
-            return "\"" + defaultStringAnnot.value() + "\"";
+            return "\"" + unescapeString(defaultStringAnnot.value()) + "\"";
         }
 
         annotClass = org.jraf.android.prefs.DefaultStringSet.class;
@@ -223,7 +223,7 @@ public class PrefsProcessor extends AbstractProcessor {
             for (String s : defaultStringSetAnnot.value()) {
                 if (i > 0) res.append(", ");
                 res.append("\"");
-                res.append(s);
+                res.append(unescapeString(s));
                 res.append("\"");
                 i++;
             }
@@ -249,5 +249,22 @@ public class PrefsProcessor extends AbstractProcessor {
             return fieldNameAnnot.value();
         }
         return fieldName;
+    }
+
+    private String unescapeString(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, count = s.length(); i < count; i++)
+            switch (s.charAt(i)){
+                case '\t': sb.append("\\t"); break;
+                case '\b': sb.append("\\b"); break;
+                case '\n': sb.append("\\n"); break;
+                case '\r': sb.append("\\r"); break;
+                case '\f': sb.append("\\f"); break;
+                case '\'': sb.append("\\'"); break;
+                case '\"': sb.append("\\\""); break;
+                case '\\': sb.append("\\\\"); break;
+                default: sb.append(s.charAt(i));
+            }
+        return sb.toString();
     }
 }
