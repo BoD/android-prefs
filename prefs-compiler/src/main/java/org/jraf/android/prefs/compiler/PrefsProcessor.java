@@ -139,15 +139,21 @@ public class PrefsProcessor extends AbstractProcessor {
                 // Disable @Nullable generation
                 args.put("disableNullable", prefsAnnot.disableNullable());
 
+                final CharSequence packageName = packageElement.getQualifiedName();
+                String classNamePrefix = prefsAnnot.classNamePrefix();
+                if (classNamePrefix.isEmpty()) {
+                    classNamePrefix = classElement.getSimpleName().toString();
+                }
+
                 JavaFileObject javaFileObject = null;
                 try {
                     // SharedPreferencesWrapper
-                    javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + SUFFIX_PREF_WRAPPER);
+                    javaFileObject = processingEnv.getFiler().createSourceFile(classNamePrefix + SUFFIX_PREF_WRAPPER);
                     Template template = getFreemarkerConfiguration().getTemplate("prefwrapper.ftl");
-                    args.put("package", packageElement.getQualifiedName());
+                    args.put("package", packageName);
                     args.put("comment", classComment);
-                    args.put("prefWrapperClassName", classElement.getSimpleName() + SUFFIX_PREF_WRAPPER);
-                    args.put("editorWrapperClassName", classElement.getSimpleName() + SUFFIX_EDITOR_WRAPPER);
+                    args.put("prefWrapperClassName", classNamePrefix + SUFFIX_PREF_WRAPPER);
+                    args.put("editorWrapperClassName", classNamePrefix + SUFFIX_EDITOR_WRAPPER);
                     args.put("prefList", prefList);
                     Writer writer = javaFileObject.openWriter();
                     template.process(args, writer);

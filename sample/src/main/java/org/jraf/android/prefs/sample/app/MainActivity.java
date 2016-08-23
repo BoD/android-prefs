@@ -29,6 +29,7 @@ import android.util.Log;
 
 import org.jraf.android.prefs.sample.prefs.MainPrefs;
 import org.jraf.android.prefs.sample.prefs.SettingsPrefs;
+import org.jraf.android.prefs.sample.prefs.MyCustomPrefs;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getName();
@@ -50,5 +51,8 @@ public class MainActivity extends Activity {
         Log.d(TAG, "preferredColor=" + settingsPrefs.getPreferredColor());
         Log.d(TAG, "settingsPrefs=" + settingsPrefs.getAll());
 
+        MyCustomPrefs myCustomPrefs = MyCustomPrefs.get(this);
+        myCustomPrefs.putTestBooleanFlag(true);
+        Log.d(TAG, "MyCustomPrefs - testBoolean=" + myCustomPrefs.getTestBooleanFlag());
     }
 }
