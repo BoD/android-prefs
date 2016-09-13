@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:2.2.+'
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:2.2.2'
     }
 }
 
@@ -17,7 +17,7 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 group = 'org.jraf'
-version = '1.0.1'
+version = '1.1.0'
 
 javadoc.failOnError = false
 

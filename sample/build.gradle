@@ -3,14 +3,14 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '24.0.1'
+    buildToolsVersion '24.0.2'
 
     defaultConfig {
         applicationId 'org.jraf.android.prefs.sample'
         minSdkVersion 9
         targetSdkVersion 24
         versionCode 1
-        versionName '1.0.1'
+        versionName '1.1.0'
     }
     buildTypes {
         release {
@@ -21,7 +21,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.android.support:support-annotations:24.2.0'
 
     apt project(':prefs-compiler')
     compile project(':prefs')
