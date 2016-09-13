@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -41,6 +42,7 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
         super(wrapped);
     }
 
+    @SuppressLint("CommitPrefEdits")
     public ${editorWrapperClassName} edit() {
         return new ${editorWrapperClassName}(super.edit());
     }
