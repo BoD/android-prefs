@@ -35,8 +35,8 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
     /* ... */
-    apt 'org.jraf:prefs-compiler:1.0.1'
-    compile 'org.jraf:prefs:1.0.1'
+    apt 'org.jraf:prefs-compiler:1.1.0'
+    compile 'org.jraf:prefs:1.1.0'
 }
 ```
 
@@ -119,7 +119,7 @@ License
 ---
 
 ```
-Copyright (C) 2015 Benoit 'BoD' Lubek (BoD@JRAF.org)
+Copyright (C) 2015-2016 Benoit 'BoD' Lubek (BoD@JRAF.org)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
