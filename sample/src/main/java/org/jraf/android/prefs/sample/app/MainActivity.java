@@ -43,6 +43,8 @@ public class MainActivity extends Activity {
         mainPrefs.putAge(null);
         Log.d(TAG, "login=" + mainPrefs.getLogin());
         Log.d(TAG, "age=" + mainPrefs.getAge());
+        Log.d(TAG, "premium=" + mainPrefs.getPremium());
+        Log.d(TAG, "premium=" + mainPrefs.isPremium());
         Log.d(TAG, "mainPrefs=" + mainPrefs.getAll());
 
         SettingsPrefs settingsPrefs = SettingsPrefs.get(this);
