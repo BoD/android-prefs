@@ -17,30 +17,12 @@ Usage
 ### 1/ Add the dependencies to your project
 
 ```groovy
-buildscript {
-    repositories {
-        /* ... */
-        jcenter()
-    }
-    dependencies {
-        /* ... */
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-    }
-}
-
-/* ... */
-apply plugin: 'com.neenbedankt.android-apt'
-
-/* ... */
-
 dependencies {
     /* ... */
-    apt 'org.jraf:prefs-compiler:1.1.0'
+    annotationProcessor 'org.jraf:prefs-compiler:1.1.0'
     compile 'org.jraf:prefs:1.1.0'
 }
 ```
-
-**Prefs** makes good use of the excellent [android-apt plugin](https://bitbucket.org/hvisser/android-apt).
 
 
 ### 2/ Define your preferences
