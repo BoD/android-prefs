@@ -27,6 +27,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.jraf.android.prefs.sample.R;
 import org.jraf.android.prefs.sample.prefs.MainPrefs;
 import org.jraf.android.prefs.sample.prefs.SettingsPrefs;
 
@@ -36,7 +37,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(org.jraf.android.prefs.sample.R.layout.main);
+        setContentView(R.layout.main);
 
         MainPrefs mainPrefs = MainPrefs.get(this);
         mainPrefs.edit().putLogin("john").putPassword("p4Ssw0Rd").commit();
