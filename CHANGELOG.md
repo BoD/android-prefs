@@ -1,6 +1,11 @@
 Prefs Changelog
 ===
 
+v1.1.1 (2017-01-08)
+---
+Bug fix.
+- Fixed a crash when using `kapt`
+
 v1.1.0 (2015-09-13)
 ---
 Minor enhancements.
