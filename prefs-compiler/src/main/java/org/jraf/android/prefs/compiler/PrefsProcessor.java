@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2015 Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2015-2017 Benoit 'BoD' Lubek (BoD@JRAF.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,11 +46,12 @@ import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 
 import org.apache.commons.io.IOUtils;
-import org.jraf.android.prefs.DefaultInt;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.Version;
+
+import org.jraf.android.prefs.DefaultInt;
 
 @SupportedAnnotationTypes("org.jraf.android.prefs.Prefs")
 public class PrefsProcessor extends AbstractProcessor {
@@ -74,8 +75,12 @@ public class PrefsProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        for (TypeElement te : annotations) {
-            for (Element element : roundEnv.getElementsAnnotatedWith(te)) {
+        for (TypeElement annotation : annotations) {
+            if (!annotation.getQualifiedName().contentEquals("org.jraf.android.prefs.Prefs")) {
+                // Should never happen - but does with kapt :)
+                continue;
+            }
+            for (Element element : roundEnv.getElementsAnnotatedWith(annotation)) {
                 TypeElement classElement = (TypeElement) element;
                 PackageElement packageElement = (PackageElement) classElement.getEnclosingElement();
 
