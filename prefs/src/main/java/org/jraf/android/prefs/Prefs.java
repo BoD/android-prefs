@@ -65,4 +65,10 @@ public @interface Prefs {
      * This is useful if your project does not use the support library.
      */
     boolean disableNullable() default false;
+
+    /**
+     * Desired generated class name prefix.<br>
+     * If empty string is specified, uses target class name.
+     */
+    String classNamePrefix() default "";
 }
