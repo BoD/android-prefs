@@ -104,6 +104,15 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
      * ${pref.comment?trim}
      */
     </#if><#t>
+    public ${prefWrapperClassName} set${pref.fieldName?cap_first}(${pref.type.simpleName} ${pref.fieldName}) {
+        return put${pref.fieldName?cap_first}(${pref.fieldName});
+    }
+
+    <#if pref.comment??>
+    /**
+     * ${pref.comment?trim}
+     */
+    </#if><#t>
     public ${prefWrapperClassName} remove${pref.fieldName?cap_first}() {
         edit().remove("${pref.prefName}").apply();
         return this;

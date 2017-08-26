@@ -67,7 +67,7 @@ public class PrefsProcessor extends AbstractProcessor {
 
     private Configuration getFreemarkerConfiguration() {
         if (mFreemarkerConfiguration == null) {
-            mFreemarkerConfiguration = new Configuration(new Version(2, 3, 22));
+            mFreemarkerConfiguration = new Configuration(new Version(2, 3, 26));
             mFreemarkerConfiguration.setClassForTemplateLoading(getClass(), "");
         }
         return mFreemarkerConfiguration;

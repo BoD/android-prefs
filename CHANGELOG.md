@@ -1,6 +1,10 @@
 Prefs Changelog
 ===
 
+v1.2.0 (2017-08-26)
+---
+- Added `setXyz` in addition to `putXyz` methods, to improve Kotlin interop.
+
 v1.1.1 (2017-01-08)
 ---
 Bug fix.

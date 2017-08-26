@@ -43,6 +43,15 @@ public class ${editorWrapperClassName} extends EditorWrapper {
      * ${pref.comment?trim}
      */
     </#if><#t>
+    public ${editorWrapperClassName} set${pref.fieldName?cap_first}(${pref.type.simpleName} ${pref.fieldName}) {
+        return put${pref.fieldName?cap_first}(${pref.fieldName});
+    }
+
+    <#if pref.comment??>
+    /**
+     * ${pref.comment?trim}
+     */
+    </#if><#t>
     public ${editorWrapperClassName} remove${pref.fieldName?cap_first}() {
         remove("${pref.prefName}");
         return this;

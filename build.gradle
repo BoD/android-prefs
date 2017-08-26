@@ -2,18 +2,35 @@
 
 buildscript {
     repositories {
-        maven { url 'https://maven.google.com' }
+        google()
         jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha2'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta2'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.15.0'
     }
 }
 
 allprojects {
     repositories {
+        google()
         jcenter()
         mavenLocal()
+    }
+}
+
+// Run './gradlew dependencyUpdates' to see new versions of dependencies
+apply plugin: 'com.github.ben-manes.versions'
+dependencyUpdates.resolutionStrategy = {
+    componentSelection { rules ->
+        rules.all { selection ->
+            boolean rejected = [/*'alpha', 'beta',*/ 'rc', '20050927'].any { qualifier ->
+                selection.candidate.version.toLowerCase() ==~ /.*-${qualifier}.*/
+            }
+            if (rejected) {
+                selection.reject('Release candidate')
+            }
+        }
     }
 }
