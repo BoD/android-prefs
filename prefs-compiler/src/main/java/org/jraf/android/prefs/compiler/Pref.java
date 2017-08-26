@@ -43,6 +43,10 @@ public class Pref {
         return mFieldName;
     }
 
+    public String getFieldNameUpperCase() {
+        return mFieldName.replaceAll("([A-Z]+)", "\\_$1").toUpperCase();
+    }
+
     public String getPrefName() {
         return mPrefName;
     }

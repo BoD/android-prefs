@@ -76,8 +76,8 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     @Nullable
     </#if><#t>
     public ${pref.type.simpleName} <#if pref.type == "BOOLEAN">is<#else>get</#if>${pref.fieldName?cap_first}() {
-        if (!contains("${pref.prefName}")) return ${pref.defaultValue};
-        return get${pref.type.methodName}("${pref.prefName}", ${pref.type.defaultValue});
+        if (!contains(${constantsClassName}.KEY_${pref.fieldNameUpperCase})) return ${constantsClassName}.DEFAULT_${pref.fieldNameUpperCase};
+        return get${pref.type.methodName}(${constantsClassName}.KEY_${pref.fieldNameUpperCase}, ${pref.type.defaultValue});
     }
 
     <#if pref.comment??>
@@ -86,7 +86,7 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
      */
     </#if><#t>
     public boolean contains${pref.fieldName?cap_first}() {
-        return contains("${pref.prefName}");
+        return contains(${constantsClassName}.KEY_${pref.fieldNameUpperCase});
     }
 
     <#if pref.comment??>
@@ -114,7 +114,7 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
      */
     </#if><#t>
     public ${prefWrapperClassName} remove${pref.fieldName?cap_first}() {
-        edit().remove("${pref.prefName}").apply();
+        edit().remove(${constantsClassName}.KEY_${pref.fieldNameUpperCase}).apply();
         return this;
     }
 

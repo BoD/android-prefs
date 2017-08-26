@@ -1,9 +1,10 @@
 Prefs Changelog
 ===
 
-v1.2.0 (2017-08-26)
+v1.2.1 (2017-08-26)
 ---
 - Added `setXyz` in addition to `putXyz` methods, to improve Kotlin interop.
+- New `XyzConstants` file generated with key names and default values.
 
 v1.1.1 (2017-01-08)
 ---

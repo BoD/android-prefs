@@ -57,6 +57,7 @@ import org.jraf.android.prefs.DefaultInt;
 public class PrefsProcessor extends AbstractProcessor {
     private static final String SUFFIX_PREF_WRAPPER = "Prefs";
     private static final String SUFFIX_EDITOR_WRAPPER = "EditorWrapper";
+    private static final String SUFFIX_CONSTANTS = "Constants";
 
     private Configuration mFreemarkerConfiguration;
 
@@ -146,21 +147,30 @@ public class PrefsProcessor extends AbstractProcessor {
 
                 JavaFileObject javaFileObject = null;
                 try {
-                    // SharedPreferencesWrapper
-                    javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + SUFFIX_PREF_WRAPPER);
-                    Template template = getFreemarkerConfiguration().getTemplate("prefwrapper.ftl");
                     args.put("package", packageElement.getQualifiedName());
                     args.put("comment", classComment);
                     args.put("prefWrapperClassName", classElement.getSimpleName() + SUFFIX_PREF_WRAPPER);
                     args.put("editorWrapperClassName", classElement.getSimpleName() + SUFFIX_EDITOR_WRAPPER);
+                    args.put("constantsClassName", classElement.getSimpleName() + SUFFIX_CONSTANTS);
                     args.put("prefList", prefList);
+
+                    // SharedPreferencesWrapper
+                    javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + SUFFIX_PREF_WRAPPER);
+                    Template template = getFreemarkerConfiguration().getTemplate("prefwrapper.ftl");
                     Writer writer = javaFileObject.openWriter();
                     template.process(args, writer);
                     IOUtils.closeQuietly(writer);
 
                     // EditorWrapper
-                    javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + "EditorWrapper");
+                    javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + SUFFIX_EDITOR_WRAPPER);
                     template = getFreemarkerConfiguration().getTemplate("editorwrapper.ftl");
+                    writer = javaFileObject.openWriter();
+                    template.process(args, writer);
+                    IOUtils.closeQuietly(writer);
+
+                    // Constants
+                    javaFileObject = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + SUFFIX_CONSTANTS);
+                    template = getFreemarkerConfiguration().getTemplate("constants.ftl");
                     writer = javaFileObject.openWriter();
                     template.process(args, writer);
                     IOUtils.closeQuietly(writer);

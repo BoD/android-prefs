@@ -31,9 +31,9 @@ public class ${editorWrapperClassName} extends EditorWrapper {
     </#if><#t>
     public ${editorWrapperClassName} put${pref.fieldName?cap_first}(${pref.type.simpleName} ${pref.fieldName}) {
         if (${pref.fieldName} == null) {
-            remove("${pref.prefName}");
+            remove(${constantsClassName}.KEY_${pref.fieldNameUpperCase});
         } else {
-            put${pref.type.methodName}("${pref.prefName}", ${pref.fieldName});
+            put${pref.type.methodName}(${constantsClassName}.KEY_${pref.fieldNameUpperCase}, ${pref.fieldName});
         }
         return this;
     }
@@ -53,7 +53,7 @@ public class ${editorWrapperClassName} extends EditorWrapper {
      */
     </#if><#t>
     public ${editorWrapperClassName} remove${pref.fieldName?cap_first}() {
-        remove("${pref.prefName}");
+        remove(${constantsClassName}.KEY_${pref.fieldNameUpperCase});
         return this;
     }
 
