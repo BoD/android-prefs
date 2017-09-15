@@ -1,5 +1,9 @@
 package ${package};
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 <#if comment??>
 /**
  * ${comment?trim}

@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 26
         versionCode 1
-        versionName '1.2.1'
+        versionName '1.2.2'
     }
     buildTypes {
         release {
@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:support-annotations:26.0.1'
+    implementation 'com.android.support:support-annotations:26.0.2'
 
     annotationProcessor project(':prefs-compiler')
     implementation project(':prefs')
