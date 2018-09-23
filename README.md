@@ -19,7 +19,7 @@ Usage
 ```groovy
 dependencies {
     /* ... */
-    annotationProcessor 'org.jraf:prefs-compiler:1.2.2'
+    annotationProcessor 'org.jraf:prefs-compiler:1.2.2' // or kapt if you use Kotlin
     implementation 'org.jraf:prefs:1.2.2'
 }
 ```
@@ -37,7 +37,6 @@ public class Main {
     /**
      * User login.
      */
-    @Name("PREF_LOGIN")
     String login;
 
     /**
