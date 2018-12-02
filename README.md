@@ -95,12 +95,17 @@ A class named `<YourClassName>Prefs` will be generated in the same package (at c
         mainPrefs.clear();
 ```
 
+Bonus: in Kotlin you can directly use `=`:
+```kotlin
+        // Put a single value (apply() is automatically called)
+        mainPrefs.age = 42
+```
 
 License
 ---
 
 ```
-Copyright (C) 2015-2017 Benoit 'BoD' Lubek (BoD@JRAF.org)
+Copyright (C) 2015-present Benoit 'BoD' Lubek (BoD@JRAF.org)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

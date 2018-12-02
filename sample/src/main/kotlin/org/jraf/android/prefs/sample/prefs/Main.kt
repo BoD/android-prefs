@@ -21,15 +21,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jraf.android.prefs;
+package org.jraf.android.prefs.sample.prefs
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.jraf.android.prefs.DefaultBoolean
+import org.jraf.android.prefs.Name
+import org.jraf.android.prefs.Prefs
 
-@Target(ElementType.FIELD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface DefaultInt {
-    int value();
+/**
+ * The main preferences of the app.
+ */
+@Prefs
+class Main {
+
+    /**
+     * User login.
+     *
+     * This is the main way to identify the user.
+     */
+    @Name(PREF_LOGIN)
+    var login: String? = null
+
+    /**
+     * User password.
+     */
+    var password: String? = null
+
+    @DefaultBoolean(false)
+    var premium: Boolean? = null
+
+    @Name(PREF_AGE)
+    var age: Int? = null
+
+
+    companion object {
+        private const val PREF_LOGIN = "PREF_LOGIN"
+        private const val PREF_AGE = "PREF_AGE"
+    }
 }

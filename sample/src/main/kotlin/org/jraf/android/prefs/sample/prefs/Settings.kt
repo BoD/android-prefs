@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2015 Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2015-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,28 +21,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jraf.android.prefs.sample.prefs;
+package org.jraf.android.prefs.sample.prefs
 
-import java.util.Set;
-
-import android.content.Context;
-
-import org.jraf.android.prefs.DefaultInt;
-import org.jraf.android.prefs.DefaultStringSet;
-import org.jraf.android.prefs.Prefs;
+import android.content.Context
+import org.jraf.android.prefs.DefaultInt
+import org.jraf.android.prefs.DefaultStringSet
+import org.jraf.android.prefs.Prefs
 
 /**
  * Other settings useful for the app.
  */
 @Prefs(fileName = "settings", fileMode = Context.MODE_PRIVATE)
-public class Settings {
-    @DefaultInt(0xFFBB00DD)
-    Integer preferredColor;
+class Settings {
+    @DefaultInt(-0x44ff23)
+    var preferredColor: Int? = null
 
     /**
      * The week days that the user prefers.
      */
-    @DefaultStringSet({"Friday", "Saturday"})
-    Set<String> weekDays;
-
+    @DefaultStringSet("Friday", "Saturday")
+    var weekDays: Set<String>? = null
 }

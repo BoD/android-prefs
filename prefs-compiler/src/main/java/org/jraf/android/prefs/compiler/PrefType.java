@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2015 Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2015-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,11 +23,10 @@
  */
 package org.jraf.android.prefs.compiler;
 
-import java.util.ArrayList;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.lang.model.type.TypeMirror;
-
-import org.apache.commons.lang3.StringUtils;
+import java.util.ArrayList;
 
 public enum PrefType {
     BOOLEAN(Boolean.class.getName(), Boolean.class.getSimpleName(), "Boolean", "false"),

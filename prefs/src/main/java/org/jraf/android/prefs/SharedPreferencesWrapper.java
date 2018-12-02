@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2015 Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2015-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +23,10 @@
  */
 package org.jraf.android.prefs;
 
+import android.content.SharedPreferences;
+
 import java.util.Map;
 import java.util.Set;
-
-import android.content.SharedPreferences;
 
 /**
  * Wrapper for {@link SharedPreferences}.

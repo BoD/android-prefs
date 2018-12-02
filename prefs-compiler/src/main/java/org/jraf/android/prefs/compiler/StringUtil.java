@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2015 Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2018-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,34 +21,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jraf.android.prefs.sample.prefs;
+package org.jraf.android.prefs.compiler;
 
-import org.jraf.android.prefs.DefaultBoolean;
-import org.jraf.android.prefs.Name;
-import org.jraf.android.prefs.Prefs;
-
-/**
- * The main preferences of the app.
- */
-@Prefs
-public class Main {
-    private static final String PREF_LOGIN = "PREF_LOGIN";
-    private static final String PREF_AGE = "PREF_AGE";
-
-    /**
-     * User login.
-     */
-    @Name(PREF_LOGIN)
-    String login;
-
-    /**
-     * User password.
-     */
-    String password;
-
-    @DefaultBoolean(false)
-    Boolean premium;
-
-    @Name(PREF_AGE)
-    Integer age;
+public class StringUtil {
+    public static String cleanComment(String s) {
+        if (s == null) return null;
+        if (s.startsWith(" * ")) return s.substring(2);
+        return s;
+    }
 }

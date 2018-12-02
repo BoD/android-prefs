@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2015-2017 Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2015-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,35 +23,24 @@
  */
 package org.jraf.android.prefs.compiler;
 
-import java.io.Writer;
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.Version;
+import org.apache.commons.io.IOUtils;
+import org.jraf.android.prefs.DefaultInt;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.Modifier;
-import javax.lang.model.element.PackageElement;
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.VariableElement;
+import javax.lang.model.element.*;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.ElementFilter;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
-
-import org.apache.commons.io.IOUtils;
-
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.Version;
-
-import org.jraf.android.prefs.DefaultInt;
+import java.io.Writer;
+import java.lang.annotation.Annotation;
+import java.util.*;
 
 @SupportedAnnotationTypes("org.jraf.android.prefs.Prefs")
 public class PrefsProcessor extends AbstractProcessor {
@@ -114,7 +103,7 @@ public class PrefsProcessor extends AbstractProcessor {
                         return true;
                     }
 
-                    String fieldComment = processingEnv.getElementUtils().getDocComment(variableElement);
+                    String fieldComment = StringUtil.cleanComment(processingEnv.getElementUtils().getDocComment(variableElement));
                     Pref pref = new Pref(fieldName, prefName, PrefType.from(fieldType), prefDefaultValue, fieldComment);
                     prefList.add(pref);
                 }
@@ -148,7 +137,7 @@ public class PrefsProcessor extends AbstractProcessor {
                 JavaFileObject javaFileObject = null;
                 try {
                     args.put("package", packageElement.getQualifiedName());
-                    args.put("comment", classComment);
+                    args.put("comment", StringUtil.cleanComment(classComment));
                     args.put("prefWrapperClassName", classElement.getSimpleName() + SUFFIX_PREF_WRAPPER);
                     args.put("editorWrapperClassName", classElement.getSimpleName() + SUFFIX_EDITOR_WRAPPER);
                     args.put("constantsClassName", classElement.getSimpleName() + SUFFIX_CONSTANTS);

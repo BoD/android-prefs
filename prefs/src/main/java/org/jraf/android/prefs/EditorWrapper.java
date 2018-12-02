@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  *
- * Copyright (C) 2015 Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2015-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,11 +23,12 @@
  */
 package org.jraf.android.prefs;
 
-import java.util.Set;
-
 import android.content.SharedPreferences;
 
-public class EditorWrapper implements SharedPreferences.Editor {
+import java.io.Closeable;
+import java.util.Set;
+
+public class EditorWrapper implements SharedPreferences.Editor, Closeable {
     private final SharedPreferences.Editor mWrapped;
 
     public EditorWrapper(SharedPreferences.Editor wrapped) {
@@ -80,5 +81,10 @@ public class EditorWrapper implements SharedPreferences.Editor {
 
     public void apply() {
         mWrapped.apply();
+    }
+
+    @Override
+    public void close() {
+        commit();
     }
 }

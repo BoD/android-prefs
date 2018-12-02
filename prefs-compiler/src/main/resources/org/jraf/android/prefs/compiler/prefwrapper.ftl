@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 <#if !disableNullable>
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 </#if><#t>
 
@@ -20,6 +21,7 @@ import org.jraf.android.prefs.SharedPreferencesWrapper;
 public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
     private static ${prefWrapperClassName} sInstance;
 
+    <#if !disableNullable>@NonNull</#if>
     public static ${prefWrapperClassName} get(Context context) {
         if (sInstance == null) {
             SharedPreferences wrapped = getWrapped(context);
@@ -40,6 +42,7 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
         super(wrapped);
     }
 
+    <#if !disableNullable>@NonNull</#if>
     @SuppressLint("CommitPrefEdits")
     public ${editorWrapperClassName} edit() {
         return new ${editorWrapperClassName}(super.edit());

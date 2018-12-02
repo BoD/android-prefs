@@ -1,19 +1,28 @@
 Prefs Changelog
 ===
 
+v1.3.0 (2018-12-02)
+---
+- Updated dependencies to latest versions
+- Updated sample project to be in Kotlin
+
+
 v1.2.2 (2017-09-15)
 ---
 - Fixed a bug where some imports were missing in the generated code
+
 
 v1.2.1 (2017-08-26)
 ---
 - Added `setXyz` in addition to `putXyz` methods, to improve Kotlin interop.
 - New `XyzConstants` file generated with key names and default values.
 
+
 v1.1.1 (2017-01-08)
 ---
 Bug fix.
 - Fixed a crash when using `kapt`
+
 
 v1.1.0 (2015-09-13)
 ---
