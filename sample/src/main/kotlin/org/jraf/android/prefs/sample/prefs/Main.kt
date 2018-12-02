@@ -30,7 +30,7 @@ import org.jraf.android.prefs.Prefs
 /**
  * The main preferences of the app.
  */
-@Prefs
+@Prefs(generateGetLiveData = true)
 class Main {
 
     /**

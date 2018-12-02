@@ -38,6 +38,10 @@ public class SharedPreferencesWrapper implements SharedPreferences {
         mWrapped = wrapped;
     }
 
+    public SharedPreferences getWrapped() {
+        return mWrapped;
+    }
+
     public Map<String, ?> getAll() {
         return mWrapped.getAll();
     }

@@ -5,6 +5,7 @@ v1.3.0 (2018-12-02)
 ---
 - Updated dependencies to latest versions
 - Updated sample project to be in Kotlin
+- Added getXyzLiveData methods to observe the preferences
 
 
 v1.2.2 (2017-09-15)

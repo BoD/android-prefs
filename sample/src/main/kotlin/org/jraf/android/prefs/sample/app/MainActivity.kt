@@ -23,22 +23,29 @@
  */
 package org.jraf.android.prefs.sample.app
 
-import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import org.jraf.android.prefs.sample.R
 import org.jraf.android.prefs.sample.prefs.MainPrefs
 import org.jraf.android.prefs.sample.prefs.SettingsPrefs
+import java.util.*
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
 
         val mainPrefs = MainPrefs.get(this)
+
+        mainPrefs.loginLiveData.observe(this, Observer {
+            Log.d(TAG, "observed login=$it")
+        })
+
         mainPrefs.edit().use {
-            it.setLogin("john")
+            it.setLogin("john ${Date()}")
             it.setPassword("p4Ssw0Rd")
         }
 

@@ -95,11 +95,21 @@ A class named `<YourClassName>Prefs` will be generated in the same package (at c
         mainPrefs.clear();
 ```
 
-Bonus: in Kotlin you can directly use `=`:
+Bonus 1: in Kotlin you can directly use `=`:
 ```kotlin
         // Put a single value (apply() is automatically called)
         mainPrefs.age = 42
 ```
+
+Bonus 2: you also get `LiveData`s to observe your preferences:
+```kotlin
+        mainPrefs.loginLiveData.observe(this, Observer {
+            Log.d(TAG, "observed login=$it")
+        })
+```
+Note: currently this is disabled by default (because maybe you don't use `LiveData`?) - add `generateGetLiveData = true`
+to your `@Prefs` annotation to enabled it.
+
 
 License
 ---

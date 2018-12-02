@@ -65,4 +65,10 @@ public @interface Prefs {
      * This is useful if your project does not use the support library.
      */
     boolean disableNullable() default false;
+
+    /**
+     * Whether to generate observe methods.
+     * The default value if {@code true} as this adds a dependency to the architecture components.
+     */
+    boolean generateGetLiveData() default false;
 }

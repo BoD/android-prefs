@@ -3,6 +3,10 @@ package ${package};
 import java.util.Set;
 
 import android.annotation.SuppressLint;
+<#if generateGetLiveData>
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+</#if><#t>
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -81,6 +85,22 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
         return get${pref.type.methodName}(${constantsClassName}.KEY_${pref.fieldNameUpperCase}, ${pref.type.defaultValue});
     }
 
+    <#if generateGetLiveData>
+    <#if pref.comment??>
+    /**
+     * ${pref.comment?trim}
+     */
+    </#if><#t>
+    public LiveData<${pref.type.simpleName}> get${pref.fieldName?cap_first}LiveData() {
+        return new PreferenceLiveData<${pref.type.simpleName}>(${constantsClassName}.KEY_${pref.fieldNameUpperCase}) {
+            @Override
+            public ${pref.type.simpleName} getPreferenceValue() {
+                return get${pref.fieldName?cap_first}();
+            }
+        };
+    }
+    </#if>
+
     <#if pref.comment??>
     /**
      * ${pref.comment?trim}
@@ -121,4 +141,41 @@ public class ${prefWrapperClassName} extends SharedPreferencesWrapper {
 
     // endregion
 </#list>
+
+    <#if generateGetLiveData>
+
+    //================================================================================
+    // region PreferenceLiveData
+    //================================================================================
+
+    private abstract class PreferenceLiveData<T> extends MutableLiveData<T> {
+        private final String mKey;
+
+        public PreferenceLiveData(String key) {
+            mKey = key;
+        }
+
+        private final OnSharedPreferenceChangeListener mListener = new OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                if (mKey.equals(key)) setValue(getPreferenceValue());
+            }
+        };
+
+        @Override
+        protected void onActive() {
+            getWrapped().registerOnSharedPreferenceChangeListener(mListener);
+            if (!getPreferenceValue().equals(getValue())) setValue(getPreferenceValue());
+        }
+
+        @Override
+        protected void onInactive() {
+            getWrapped().unregisterOnSharedPreferenceChangeListener(mListener);
+        }
+
+        public abstract T getPreferenceValue();
+    }
+
+    // endregion
+    </#if><#t>
 }
