@@ -134,8 +134,11 @@ public class PrefsProcessor extends AbstractProcessor {
                 // Disable @Nullable generation
                 args.put("disableNullable", prefsAnnot.disableNullable());
 
-                // Generate observe methods
+                // Generate getLiveData methods
                 args.put("generateGetLiveData", prefsAnnot.generateGetLiveData());
+
+                // Use AndroidX
+                args.put("useAndroidX", prefsAnnot.useAndroidX());
 
                 JavaFileObject javaFileObject = null;
                 try {

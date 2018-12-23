@@ -4,15 +4,15 @@ import java.util.Set;
 
 import android.annotation.SuppressLint;
 <#if generateGetLiveData>
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import <#if useAndroidX>androidx<#else>android.arch</#if>.lifecycle.LiveData;
+import <#if useAndroidX>androidx<#else>android.arch</#if>.lifecycle.MutableLiveData;
 </#if><#t>
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 <#if !disableNullable>
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import <#if useAndroidX>androidx<#else>android.support</#if>.annotation.NonNull;
+import <#if useAndroidX>androidx<#else>android.support</#if>.annotation.Nullable;
 </#if><#t>
 
 import org.jraf.android.prefs.SharedPreferencesWrapper;

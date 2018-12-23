@@ -71,4 +71,10 @@ public @interface Prefs {
      * The default value if {@code true} as this adds a dependency to the architecture components.
      */
     boolean generateGetLiveData() default false;
+
+    /**
+     * Whether to use androidx package for {@code @Nullable} and {@code LiveData}.
+     * The default value if {@code false}.
+     */
+    boolean useAndroidX() default false;
 }

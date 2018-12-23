@@ -1,6 +1,11 @@
 Prefs Changelog
 ===
 
+v1.4.0 (2018-12-23)
+---
+- Added androidx compatibility
+
+
 v1.3.0 (2018-12-02)
 ---
 - Updated dependencies to latest versions

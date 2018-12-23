@@ -31,7 +31,11 @@ import org.jraf.android.prefs.Prefs
 /**
  * Other settings useful for the app.
  */
-@Prefs(fileName = "settings", fileMode = Context.MODE_PRIVATE)
+@Prefs(
+    fileName = "settings",
+    fileMode = Context.MODE_PRIVATE,
+    useAndroidX = false
+)
 class Settings {
     @DefaultInt(-0x44ff23)
     var preferredColor: Int? = null
