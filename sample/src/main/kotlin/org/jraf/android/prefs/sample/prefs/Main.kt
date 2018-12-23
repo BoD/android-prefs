@@ -32,7 +32,7 @@ import org.jraf.android.prefs.Prefs
  */
 @Prefs(
     generateGetLiveData = true,
-    useAndroidX = false
+    useAndroidX = true
 )
 class Main {
 

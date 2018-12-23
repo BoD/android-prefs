@@ -34,7 +34,7 @@ import org.jraf.android.prefs.Prefs
 @Prefs(
     fileName = "settings",
     fileMode = Context.MODE_PRIVATE,
-    useAndroidX = false
+    useAndroidX = true
 )
 class Settings {
     @DefaultInt(-0x44ff23)

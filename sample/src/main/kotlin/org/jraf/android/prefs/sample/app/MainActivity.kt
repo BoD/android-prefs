@@ -23,10 +23,10 @@
  */
 package org.jraf.android.prefs.sample.app
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import org.jraf.android.prefs.sample.R
 import org.jraf.android.prefs.sample.prefs.MainPrefs
 import org.jraf.android.prefs.sample.prefs.SettingsPrefs

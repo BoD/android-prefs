@@ -19,8 +19,8 @@ Usage
 ```groovy
 dependencies {
     /* ... */
-    annotationProcessor 'org.jraf:prefs-compiler:1.3.0' // or kapt if you use Kotlin
-    implementation 'org.jraf:prefs:1.3.0'
+    annotationProcessor 'org.jraf:prefs-compiler:1.4.0' // or kapt if you use Kotlin
+    implementation 'org.jraf:prefs:1.4.0'
 }
 ```
 
