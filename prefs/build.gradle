@@ -1,13 +1,18 @@
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 group = 'org.jraf'
 version = '1.4.0'
 
-javadoc.failOnError = false
+javadoc {
+    failOnError = false
+    options.links "http://d.android.com/reference"
+}
 
 tasks.register('sourcesJar', Jar) {
     dependsOn classes
