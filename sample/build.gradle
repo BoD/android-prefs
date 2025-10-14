@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 35
 
     defaultConfig {
         applicationId 'org.jraf.android.prefs.sample'
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 35
         versionCode 1
         versionName '1.4.0'
     }
@@ -23,6 +23,16 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    namespace 'org.jraf.android.prefs.sample'
 }
 
 dependencies {

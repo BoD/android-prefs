@@ -1,8 +1,10 @@
 apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 group = 'org.jraf'
 version = '1.0.0'
