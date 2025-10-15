@@ -1,6 +1,11 @@
 Prefs Changelog
 ===
 
+v1.4.1 (2025-10-15)
+---
+
+- Library is now published to Maven Central (previously JCenter), and dependencies have been updated. Other than that, there are no changes.
+
 v1.4.0 (2018-12-23)
 ---
 - Added androidx compatibility
